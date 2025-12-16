@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal One Time Payment Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../applepay/applepay-css.css">
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AT-iG-3i_Mw2lGtqH32Kn8QULpN8PBF5sLIvBTcU3wC8Ek_0EDklc_aK2cgTKsHF40PsHr7nicQPMIrf&currency=USD&components=applepay"></script>
+    <script src="https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="left-panel">
+                <h1>PayPal Google Pay One Time Payment Demo</h1>
+                <p class="subtitle">Select the product type and generate the corresponding API JSON Payload</p>
+                <div class="card">
+                    <h2 class="panel-title"><i class="fas fa-boxes"></i> Select product type</h2>
+                    <p>Select a product type, and the system will generate the corresponding API JSON payload.</p>
+
+                    <div class="button-group">
+                        <button id="physicalBtn" class="goods-btn physical-btn active">
+                            <i class="fas fa-shipping-fast btn-icon"></i>
+                            <span class="btn-text">Physical Goods</span>
+                        </button>
+
+                        <button id="virtualBtn" class="goods-btn virtual-btn">
+                            <i class="fas fa-download btn-icon"></i>
+                            <span class="btn-text">Virtual Goods</span>
+                        </button>
+
+                        <div class="current-selection">
+                            Current selection: <span id="currentType" class="selection-type physical-type">Physical
+                                Goods</span>
+                        </div>
+                    </div>
+                    <div class="payment-options">
+                        <div class="payment-option" data-payment="credit">
+                            <div class="payment-icon">
+                                <i class="fab fa-apple-pay"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>
+                                    Apple Pay
+                                </h4>
+                                <p>Pay with Apple Pay</p>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="cards-section">
+                        <div class="action-section visible">
+                            <h3>Pay with Apple Pay</h3>
+                            <!-- <button class="action-button credit-card-btn"> -->
+                            <div class="action-button credit-card-btn" id="apple-pay-button-container"
+                                style="width: 100%;">
+                            </div>
+                            <!-- </button> -->
+                            <!-- <p class="instructions">After clicking the button, you will be directed to a secure payment page to complete the payment</p> -->
+                        </div>
+                    </section>
+
+
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="card">
+                    <h2 class="panel-title">
+                        <i class="fas fa-code"></i> <span id="right-panel-title-text">Create Order API</span>
+                        <span id="typeIndicator" class="type-indicator physical-indicator">Physical Goods</span>
+                    </h2>
+                    <p id="right-panel-para">Generate JSON payload based on the product type you have selected:</p>
+                    <div class="json-controls">
+                        <button id="copyBtn" class="control-btn copy-btn">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button id="refreshBtn" class="control-btn refresh-btn">
+                            <i class="fas fa-redo"></i> Regenerate
+                        </button>
+                        <button id="clearBtn" class="control-btn clear-btn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                    <div id="jsonOutput" class="json-display">
+                        <!-- JSON内容将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i> JSON has been copied to the clipboard!
+    </div>
+    <div class="notification" id="card-notification">信用卡信息已填充到表单！</div>
+    <script src="../applepay/modal.js"></script>
+    <script src="../applepay/paypal.js"></script>
+</body>
+
+</html>

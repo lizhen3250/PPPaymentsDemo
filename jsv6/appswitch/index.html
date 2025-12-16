@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal SPB App Switch Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../appswitch/app.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="left-panel">
+                <h1>PayPal App Switch Demo</h1>
+                <p class="subtitle">Select the product type and generate the corresponding API JSON Payload</p>
+                <div class="card">
+                    <h2 class="panel-title"><i class="fas fa-boxes"></i> Select product type</h2>
+                    <p>Select a product type, and the system will generate the corresponding API JSON payload.</p>
+
+                    <div class="button-group">
+                        <button id="physicalBtn" class="goods-btn physical-btn active">
+                            <i class="fas fa-shipping-fast btn-icon"></i>
+                            <span class="btn-text">Physical Goods</span>
+                        </button>
+
+                        <button id="virtualBtn" class="goods-btn virtual-btn">
+                            <i class="fas fa-download btn-icon"></i>
+                            <span class="btn-text">Virtual Goods</span>
+                        </button>
+
+                        <div class="current-selection">
+                            Current selection: <span id="currentType" class="selection-type physical-type">Physical
+                                Goods</span>
+                        </div>
+                    </div>
+                    <div class="payment-options">
+                        <div class="payment-option selected" data-payment="paypal">
+                            <div class="payment-icon">
+                                <i class="fab fa-cc-paypal"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>PayPal</h4>
+                                <p>Pay with PayPal</p>
+                            </div>
+                            <div class="radio-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div>
+      <input type="checkbox" id="enable-auto-redirect" checked />
+      <label for="enable-auto-redirect"> Enable auto-redirect </label>
+    </div>
+
+                    <div class="action-section visible">
+                        <h3>Pay with PayPal</h3>
+                        <!-- <button class="action-button credit-card-btn"> -->
+                        <paypal-button id="paypal-button" hidden></paypal-button>
+                        <br>
+                        <br>
+                        <paypal-pay-later-button id="paylater-button" hidden></paypal-pay-later-button>
+                        <!-- </button> -->
+                        <!-- <p class="instructions">After clicking the button, you will be directed to a secure payment page to complete the payment</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="card">
+                    <h2 class="panel-title">
+                        <i class="fas fa-code"></i> <span id="right-panel-title-text">Create Order API</span>
+                        <span id="typeIndicator" class="type-indicator physical-indicator">Physical Goods</span>
+                    </h2>
+                    <p id="right-panel-para">Generate JSON payload based on the product type you have selected:</p>
+                    <div class="json-controls">
+                        <button id="copyBtn" class="control-btn copy-btn">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button id="refreshBtn" class="control-btn refresh-btn">
+                            <i class="fas fa-redo"></i> Regenerate
+                        </button>
+                        <button id="clearBtn" class="control-btn clear-btn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                    <div id="jsonOutput" class="json-display">
+                        <!-- JSON内容将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i> JSON has been copied to the clipboard!
+    </div>
+        <script
+      async
+      onload="onPayPalWebSdkLoaded()"
+      src="https://www.sandbox.paypal.com/web-sdk/v6/core"
+    ></script>
+    <script src="../appswitch/modal.js"></script>
+    <script src="../appswitch/app.js"></script>
+
+</body>
+
+</html>
